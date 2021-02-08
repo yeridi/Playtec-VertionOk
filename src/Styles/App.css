@@ -1,0 +1,74 @@
+/*
+.App{
+  visibility: hidden;
+}*/
+#root{
+  height: 100%;
+}
+#app{
+  height: 100%;
+}
+#bodyApp{
+  height: 100%;
+}
+.react-swipeable-view-container{
+  height: 100%;
+}
+
+/* esta es la region de app 1 */
+#areaDeButtones {
+  width: 100%;
+  margin-top: 10px;
+}
+#BotonesAccionContainer{
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: center;
+	align-content: stretch;
+  width: 100%;
+}
+.btn-opciones{
+  margin-right: 15px;
+
+}
+.blocklyToolboxDiv {
+  background-color: #ffffff;
+  
+}
+.blocklySvg {
+  background-color: #e3e3e3;
+}
+.blocklyFlyoutBackground{
+  fill: #ffffff;
+  fill-opacity: 1.0 !important;
+}
+.nav-wrapper-bloques{
+  position: absolute;
+  z-index: 100;
+  left: 40%;
+}
+.contenedor-head-bloques{
+  display: flex;
+  padding: 10px 0px 14px 7px;
+}
+/* color de botones  */
+#BotonesAccionContainer div.MuiAvatar-colorDefault{
+  color: #fafafa;
+  background-color: #39a2c8;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+}
+div button.MuiButton-containedPrimary{
+  color: #fff;
+  background-color: #39a2c8;
+  font-size: 1rem;
+}
+div button.MuiButtonGroup-groupedContainedPrimary:not(:last-child) {
+  border-color: #fff;
+}
+div button.MuiButton-containedPrimary:hover {
+  background-color: #20a6a7;
+}
