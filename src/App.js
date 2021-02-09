@@ -15,7 +15,6 @@ import CodeIcon from '@material-ui/icons/Code';
 
 import lightBlue from '@material-ui/core/colors/lightBlue'
 
-
 //Categorias//
 import CategoryBucles from "./blocks/Category_Bucles/categ_bucle.jsx";
 import CategoryLogica from "./blocks/Category_Logic/cate_logic.jsx";

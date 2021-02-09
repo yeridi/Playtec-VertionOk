@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
+    "@react-three/drei": "^2.2.7",
     "bootstrap": "^4.4.1",
     "file-saver": "^2.0.2",
     "micromodal": "^0.4.2",
@@ -15,7 +16,10 @@
     "react-modal": "^3.11.1",
     "react-router-dom": "^5.1.1",
     "react-scripts": "3.0.1",
-    "react-swipeable-views": "^0.13.9"
+    "react-spring": "^8.0.27",
+    "react-swipeable-views": "^0.13.9",
+    "react-three-fiber": "^5.3.18",
+    "three": "^0.122.0"
   },
   "scripts": {
     "start": "react-scripts start",

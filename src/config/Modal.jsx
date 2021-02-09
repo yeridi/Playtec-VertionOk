@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import Blockly from "../blockly copy/core";
 
 import IMG from '../example.PNG'
+
+//Models//
+
+import Model from '../componentes/three/Playtec-Robot'
+
+//three
+import { Canvas, useThree } from 'react-three-fiber'
+import Lights from '../componentes/three/ligths'
+import Floor from '../componentes/three/floor'
+import {softShadows, Loader, OrbitControls} from '@react-three/drei'
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -26,6 +37,8 @@ import Delete from '@material-ui/icons/Delete';
 import Copy from '@material-ui/icons/FileCopy';
 import { saveAs } from 'file-saver'
 import { PlayCircleFilled, PlayForWork, PlayForWorkRounded, PlaylistAdd } from '@material-ui/icons';
+//three
+softShadows();
 
 
 function load(event) {
@@ -330,7 +343,7 @@ class Menu extends React.Component {
              <Dialog
                 disableBackdropClick
                 disableEscapeKeyDown
-                maxWidth="lg"
+                maxWidth="xl"
                 aria-labelledby="new-title"
                 open={this.state.modalIsOpenNew}
              >
@@ -345,9 +358,21 @@ class Menu extends React.Component {
                     </a>
                  </DialogTitle>
                  <DialogContent dividers>
-                     <div className={"container"}></div>
-                     <p>Hola que hace :)</p>
-                     <img src={IMG} style={{ "width": "50%", "margin":"auto", "display": "block" }}></img>
+                     <div className='container' style={{width:'1000px', height:'500px'}}>
+                        <Canvas
+                            colorManagement
+                            shadowMap
+                            camera={{position:[-5,4,4], fov:50}}
+                        >
+                            <Suspense fallback={null}>
+                                <Model></Model>
+                                <Lights/>
+                                <Floor></Floor>
+                                <OrbitControls/>
+                                <Loader/>
+                            </Suspense>
+                        </Canvas>
+                      </div>
                  </DialogContent>
                  <DialogActions>
                          <Button onClick={this.closeModalNew} color="primary">
@@ -358,6 +383,7 @@ class Menu extends React.Component {
                         </Button>
                 </DialogActions>
              </Dialog>
+             
          </div>
 
         );
