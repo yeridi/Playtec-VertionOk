@@ -151,4 +151,31 @@ Blockly.Blocks['react_logic_boolean'] = {
         this.jsonInit(ReactLogicBoolean);
     }
 };
+
+/* changes */
+
+//6 bloque personalizado we need agregate options on Arduino 
+var ReactLogicBooleanLights =
+{
+    type: "react_logic_boolean_lights",
+    message0: "%1",
+    args0: [{
+        type: "field_dropdown",
+        name: "BOOL",
+        options: [
+            ["%{BKY_LOGIC_BOOLEAN_TRUE}", "TRUE"],
+            ["%{BKY_LOGIC_BOOLEAN_FALSE}", "FALSE"]
+        ]
+    }],
+    output: "Boolean",
+    tooltip: "%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
+    helpUrl: "%{BKY_LOGIC_BOOLEAN_HELPURL}",
+    colour :Blockly.Arduino.colores.cate_logico
+}
+Blockly.Blocks['react_logic_boolean_lights'] = {
+    init: function () {
+        this.jsonInit(ReactLogicBooleanLights);
+    }
+};
+
 ////

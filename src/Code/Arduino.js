@@ -438,16 +438,21 @@
   //Category Logic//
   Blockly.Arduino.logic = {};
 
+  //mi propio bloque
+  Blockly.Arduino.react_logic_boolean_lights = function(a){
+    return ["TRUE" == a.getFieldValue("BOOL") ? "Lights on" : "lights off", Blockly.Arduino.ORDER_ATOMIC]
+  }
+
   //Codigo 1er bloque
   Blockly.Arduino.react_controls_if = function (a) {
     var b = 0,
       c = "";
     Blockly.Arduino.STATEMENT_PREFIX && (c += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX, a));
     do {
-      var d = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false";
+      var d = Blockly.Arduino.valueToCode(a, "IF sale seci" + b, Blockly.Arduino.ORDER_NONE) || "false";
       var e = Blockly.Arduino.statementToCode(a, "DO" + b);
       Blockly.Arduino.STATEMENT_SUFFIX && (e = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT) + e);
-      c += (0 < b ? " else " : "") + "if (" + d + ") {\n" + e + "}"; ++b
+      c += (0 < b ? " else" : "") + "if (" + d + ") {\n" + e + "}"; ++b
     } while
       (a.getInput("IF" + b));
     if (a.getInput("ELSE") || Blockly.Arduino.STATEMENT_SUFFIX) e = Blockly.Arduino.statementToCode(a, "ELSE"), Blockly.Arduino.STATEMENT_SUFFIX && (e = Blockly.Arduino.prefixLines(Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, a), Blockly.Arduino.INDENT) + e), c += " else {\n" + e + "}";

@@ -3,9 +3,12 @@ import Blockly from "../blockly copy/core";
 
 import IMG from '../example.PNG'
 
-//Models//
+//Code
+import BlocklyJSA from "../Code/Arduino";
 
+//Models//
 import Model from '../componentes/three/Playtec-Robot'
+
 
 //three
 import { Canvas, useThree } from 'react-three-fiber'
@@ -138,6 +141,12 @@ class Menu extends React.Component {
         ]
 
     }
+
+    /* createCode = (e)=>{
+        var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
+        document.getElementById('comands').value = code;
+    } */
+
     componentDidMount = async () => {
         try {
             const localState = JSON.parse(localStorage.getItem('stateLocalBloques'))
@@ -158,6 +167,11 @@ class Menu extends React.Component {
 
         }
 
+    }
+
+    newCode(){
+        var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
+        document.getElementById('comands').value = code;
     }
 
     openModalNew(){
@@ -372,6 +386,13 @@ class Menu extends React.Component {
                                 <Loader/>
                             </Suspense>
                         </Canvas>
+                            <div>
+                                <h1>Passing Information</h1>
+                                <Button onClick={this.newCode} /* onClick={this.createCode} */
+                                >
+                                Code Arduino</Button>
+                                <div id="comands"></div>
+                            </div>
                       </div>
                  </DialogContent>
                  <DialogActions>

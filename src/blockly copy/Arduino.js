@@ -82,6 +82,7 @@
     b.length && (Blockly.Arduino.definitions_.variables = "var " + b.join(", ") + ";")
   };
 
+  //start of code from arduino
   Blockly.Arduino.finish = function (a) {
     a = "  " + a.replace(/\n/g, "\n");
     a = a.replace(/\n\s+$/, "\n");
