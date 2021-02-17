@@ -76,8 +76,6 @@ function load(event) {
     reader.readAsText(files[0]);
   }
 
-
-
 class Menu extends React.Component {
     
     constructor() {
@@ -91,9 +89,13 @@ class Menu extends React.Component {
             "ultrasonic": false,
             "Bluetooth": false,
             "RFID": false,
-            "Sensores": false
-
+            "Sensores": false,
+            code:"Code No Generate Yet"
         };
+        /* for generate other Code */
+        this.generateNewCode = this.generateNewCode.bind(this);
+
+
         this.openModalNew = this.openModalNew.bind(this);
         this.closeModalNew = this.closeModalNew.bind(this);
 
@@ -169,10 +171,10 @@ class Menu extends React.Component {
 
     }
 
-    newCode(){
+    /* newCode(){
         var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
         document.getElementById('comands').value = code;
-    }
+    } */
 
     openModalNew(){
         this.setState({ modalIsOpenNew: true });
@@ -181,6 +183,42 @@ class Menu extends React.Component {
     closeModalNew(){
         this.setState({ modalIsOpenNew: false });
     }
+
+    generateNewCode(){
+        this.props.code(this.state);
+        console.log("estoy funcionando")
+
+        var bloques = document.getElementById("bloques");
+        var arduino = document.getElementById("content_arduino");
+
+        var btn_export =document.getElementById('btn_export');
+        var btn_import =document.getElementById('btn_import');
+        var btn_delete =document.getElementById('btn_delete');
+        var btn_config =document.getElementById('btn_config');
+        var btn_copy = document.getElementById("btn_copy");
+        var btn_run = document.getElementById('btn_run');
+
+        arduino.style.visibility = "visible"
+        bloques.style.visibility = "hidden"
+        btn_export.style.visibility = "visible"
+        btn_import.style.visibility = "visible"
+        btn_delete.style.visibility = "visible"
+        btn_config.style.visibility = "visible"
+        btn_run.style.visibility = "visible"
+
+        btn_copy.style.visibility = "hidden"
+
+
+        if (bloques.style.visibility === "hidden") {
+            bloques.style.visibility = "visible";
+            arduino.style.visibility = "hidden";
+        } else {
+            arduino.style.visibility = "hidden";
+        }
+
+        /* we can improve that :) */
+    }
+
 
     openModal() {
         this.setState({ modalIsOpen: true });
@@ -261,7 +299,7 @@ class Menu extends React.Component {
 
                 <Avatar id="btn_copy" onClick={this.copycode} className={this.classes.pink + " btn-opciones"}>
                      <Copy />
-                </Avatar>    
+                </Avatar> 
                 <Avatar id="btn_export" onClick={this.ExportarXML} className={this.classes.pink + " btn-opciones"} >
                     <CloudDownloadIcon />
                 </Avatar>
@@ -372,7 +410,7 @@ class Menu extends React.Component {
                     </a>
                  </DialogTitle>
                  <DialogContent dividers>
-                     <div className='container' style={{width:'1000px', height:'500px'}}>
+                     <div  style={{width:'1000px', height:'500px'}}>
                         <Canvas
                             colorManagement
                             shadowMap
@@ -388,16 +426,13 @@ class Menu extends React.Component {
                         </Canvas>
                             <div>
                                 <h1>Passing Information</h1>
-                                <Button onClick={this.newCode} /* onClick={this.createCode} */
-                                >
-                                Code Arduino</Button>
-                                <div id="comands"></div>
+                                <div id="comands">{this.props.codeShare}</div>
                             </div>
                       </div>
                  </DialogContent>
                  <DialogActions>
-                         <Button onClick={this.closeModalNew} color="primary">
-                             Cancel
+                         <Button onClick={this.generateNewCode} color="primary">
+                             Generate Code
                         </Button>
                          <Button onClick={this.closeModalNew} color="primary">
                              Close

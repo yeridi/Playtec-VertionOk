@@ -102,8 +102,10 @@ export default class App extends React.Component {
       categoriasModal: [
         false,false,false,
         false,false,false,
-      ]
+      ],
+      data:"NO CODE YET"
     }
+    this.generateCode = this.generateCode.bind(this)
     this.handleChangeOtrosComponent = this.handleChangeOtrosComponent.bind(this)
     this.azul = lightBlue[700]
 
@@ -172,6 +174,10 @@ export default class App extends React.Component {
     btn_run.style.visibility = "hidden"
 
     btn_copy.style.visibility = "visible"
+
+    this.setState({
+      data:document.getElementById('content_arduino').value = code,
+    })
 
   };
 
@@ -251,7 +257,6 @@ export default class App extends React.Component {
               style={{ height: "50px", "margin-right": "0px", "vertical-align": "middle" }} title="Hi!" />
           </a>
         </div>
-
         <div className={`contenedor-head-bloques`}>
           <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button onClick={this.Bloques}
@@ -280,6 +285,8 @@ export default class App extends React.Component {
           </ButtonGroup>
           <AlertDialog
             cambioCategorias={this.handleChangeOtrosComponent}
+            codeShare={this.state.data}
+            code={this.generateCode}
           />
         </div>
 
