@@ -7,7 +7,8 @@ import IMG from '../example.PNG'
 import BlocklyJSA from "../Code/Arduino";
 
 //Models//
-import Model from '../componentes/three/Playtec-Robot'
+/* import Model from '../componentes/three/Playtec-Robot' */
+import Model from '../componentes/three/Version2'
 
 
 //three
