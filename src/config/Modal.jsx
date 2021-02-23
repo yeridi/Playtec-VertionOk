@@ -9,6 +9,7 @@ import BlocklyJSA from "../Code/Arduino";
 //Models//
 /* import Model from '../componentes/three/Playtec-Robot' */
 import Model from '../componentes/three/Version2'
+import Animacion from '../componentes/three/Animacion'
 
 
 //three
@@ -92,10 +93,12 @@ class Menu extends React.Component {
             "RFID": false,
             "Sensores": false,
             code:"Code No Generate Yet"
+            /* animation test */
+            /* animate:"sin animacion" */
         };
-        /* for generate other Code */
-        this.generateNewCode = this.generateNewCode.bind(this);
-
+        
+        /* for the animation */
+        /* this.clicked = this.clicked.bind(this) */
 
         this.openModalNew = this.openModalNew.bind(this);
         this.closeModalNew = this.closeModalNew.bind(this);
@@ -124,6 +127,11 @@ class Menu extends React.Component {
                 color: '#fff',
                 backgroundColor: green[500],
             },
+            buttonmodel:{
+                padding:'.5rem',
+                backgroundColor: green[500],
+                color: theme.palette.getContrastText(pink[500]),
+            },
 /*             image:{
                 width:'20%',
                 background:'red',
@@ -150,6 +158,11 @@ class Menu extends React.Component {
         document.getElementById('comands').value = code;
     } */
 
+    /* checked(){
+        this.setState(animate);
+    } */
+
+
     componentDidMount = async () => {
         try {
             const localState = JSON.parse(localStorage.getItem('stateLocalBloques'))
@@ -171,11 +184,6 @@ class Menu extends React.Component {
         }
 
     }
-
-    /* newCode(){
-        var code = BlocklyJSA.workspaceToCode(this.simpleWorkspace.workspace);
-        document.getElementById('comands').value = code;
-    } */
 
     openModalNew(){
         this.setState({ modalIsOpenNew: true });
@@ -219,8 +227,6 @@ class Menu extends React.Component {
 
         /* we can improve that :) */
     }
-
-
     openModal() {
         this.setState({ modalIsOpen: true });
     }
@@ -418,13 +424,36 @@ class Menu extends React.Component {
                             camera={{position:[-5,4,4], fov:50}}
                         >
                             <Suspense fallback={null}>
-                                <Model></Model>
+                                <Animacion
+                                    onAnimation={this.checked}
+                                />
                                 <Lights/>
                                 <Floor></Floor>
                                 <OrbitControls/>
-                                <Loader/>
                             </Suspense>
                         </Canvas>
+                            <div style={{position:'absolute', bottom:'10%',right:'5%',}}>
+                                <button
+                                    style={{borderRadius:'2rem',
+                                        padding:'1rem',
+                                        border:'solid 1px blue',
+                                        color:'blue',
+                                        background:'none',
+                                        cursor:'pointer',
+                                    }}
+                                    onClick={this.useAnimation}
+                                    >Adelante</button>
+                                <button
+                                    style={{borderRadius:'2rem',
+                                        padding:'1rem',
+                                        border:'solid 1px blue',
+                                        color:'blue',
+                                        background:'none',
+                                        cursor:'pointer',
+                                    }}
+                                    onClick={this.useAnimation}
+                                >Atras</button>
+                            </div>
                             <div>
                                 <h1>Passing Information</h1>
                                 <div id="comands">{this.props.codeShare}</div>

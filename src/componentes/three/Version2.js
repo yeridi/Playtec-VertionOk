@@ -10,15 +10,10 @@ import { useGLTF } from '@react-three/drei/useGLTF'
 import { useAnimations } from '@react-three/drei/useAnimations'
 
 export default function Model(props) {
-
   useEffect(()=>{
     console.log(actions)
-    //actions.Animacion3.play();
-    /*
     actions.Animacion2.play()
-    actions.Animacion3.play() */
   })
-
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('../../../models/Version2.glb')
   const { actions } = useAnimations(animations, group)
@@ -55,7 +50,7 @@ export default function Model(props) {
         rotation={[Math.PI / 2, 0, 0]}
         scale={[0.97, 0.97, 0.97]}>
         <mesh material={materials.anisotropic7} geometry={nodes.Malla004.geometry} />
-        <mesh material={materials.anisotropic6}  />
+        <mesh material={materials.anisotropic6} geometry={nodes.Malla004_1.geometry} />
       </group>
       <mesh
         material={materials.blinn27}
